@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class IAEnemiga : MonoBehaviour
+public class IAEnemiga : Player
 {
     // Start is called before the first frame update
     public int rutina;
@@ -14,22 +14,17 @@ public class IAEnemiga : MonoBehaviour
     public GameObject target;
     public bool atacando;
 
-    //atacando
-    public float maxHealth = 100;
-    public float currentHealth;
-    public HealthBar healthBar;
-
-    public float attackRate = 2f;
-    float nextAttack = 0f;
-
+    
     // Update is called once per frame
     void Start()
     {
         ani = GetComponent<Animator>();
         target = GameObject.Find("hero");
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(currentHealth);
-
+    }
+    void Update()
+    {
+        Comportamiento_Enemigo();
+        Die();
     }
 
     public void Comportamiento_Enemigo()
@@ -70,7 +65,7 @@ public class IAEnemiga : MonoBehaviour
                 var lookPost = target.transform.position - transform.position;
                 lookPost.y = 0;
                 var rotation = Quaternion.LookRotation(lookPost);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 2);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 5);
                 ani.SetBool("walk", false);
                 ani.SetBool("run", true);
                 transform.Translate(Vector3.forward * 40 * Time.deltaTime);
@@ -81,17 +76,7 @@ public class IAEnemiga : MonoBehaviour
                 ani.SetBool("run", false);
                 ani.SetBool("attack", true);
                 atacando = true;
-                if (currentHealth <= 0)
-                {
-                    ani.SetBool("death", false);
-                    ani.Play("Death");
-                }
-                if (Input.GetKeyDown("x"))
-                {
-                    //receiveDamage(20);
-                }
-
-
+                AttackWithRate();
             }
 
         }
@@ -103,13 +88,5 @@ public class IAEnemiga : MonoBehaviour
 
         atacando = false;
     }
-    void Update()
-    {
-        Comportamiento_Enemigo();
-    }
-    public void receiveDamage(float damage)
-    {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-    }
+    
 }

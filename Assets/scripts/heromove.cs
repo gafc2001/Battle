@@ -92,7 +92,7 @@ public class heromove : MonoBehaviour
         }
     }
 
-    void receiveDamage(float damage)
+    public void receiveDamage(float damage)
     {
        
         currentHealth -= damage;

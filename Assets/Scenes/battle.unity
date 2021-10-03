@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3761,6 +3761,7 @@ GameObject:
   - component: {fileID: 1961721207}
   - component: {fileID: 1961721205}
   - component: {fileID: 1961721206}
+  - component: {fileID: 1961721208}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -7236,9 +7237,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -7418,7 +7419,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -8447,6 +8448,18 @@ Transform:
   m_Father: {fileID: 424748304}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1961721208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961721204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2943d66b46990c545af79aa79fd9d549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2117682151 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1387226166928179182, guid: 92e128b7cc0e0c949a494ce071988c68,

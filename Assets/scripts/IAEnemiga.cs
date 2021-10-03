@@ -70,7 +70,7 @@ public class IAEnemiga : MonoBehaviour
                 var lookPost = target.transform.position - transform.position;
                 lookPost.y = 0;
                 var rotation = Quaternion.LookRotation(lookPost);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 2);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 5);
                 ani.SetBool("walk", false);
                 ani.SetBool("run", true);
                 transform.Translate(Vector3.forward * 40 * Time.deltaTime);

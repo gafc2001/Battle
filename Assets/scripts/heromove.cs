@@ -40,10 +40,9 @@ public class heromove : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(Physics.OverlapSphere(attackPoint.position, attackRange ));
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
-        transform.Rotate(0,x * Time.deltaTime *rotationSpeed,0);
+        transform.Rotate(0, x * Time.deltaTime * rotationSpeed, 0);
 
         transform.Translate(0, 0, y * Time.deltaTime * runSpeed);
 
@@ -57,39 +56,39 @@ public class heromove : MonoBehaviour
             receiveDamage(0.1f);
         }*/
 
-        if (Input.GetKey("z"))
-        {
-            animator.SetBool("Other", false);
-            animator.Play("se_me_hace_tarde");
-        }
-        if(Time.time >= nextAttack)
-        {
-            
-            if (Input.GetKeyDown("x"))
-            {
-                attack(20);
-                animator.SetBool("Other", false);
-                animator.Play("golpear");
-                nextAttack = Time.time + 1f / attackRate;
-            }
+        //if (Input.GetKey("z"))
+        //{
+        //    animator.SetBool("Other", false);
+        //    animator.Play("se_me_hace_tarde");
+        //}
+        //if (Time.time >= nextAttack)
+        //{
 
-        }
-        if (Input.GetKey("c"))
-        {
-            animator.SetBool("Other", false);
-            animator.Play("dance");
-        }
-        if (x > 0 || x < 0 || y > 0 || y<0)
-        {
-            animator.SetBool("Other", true);
-        }
-        if (currentHealth <= 0)
-        {
-            animator.SetBool("Other", false);
-            animator.Play("Death");
-            colider.center=new Vector3(-0.004065989f,1f, -3.600592e-12f);
-            colider.height = 0f;
-        }
+        //    if (Input.GetKeyDown("x"))
+        //    {
+        //        attack(20);
+        //        animator.SetBool("Other", false);
+        //        animator.Play("golpear");
+        //        nextAttack = Time.time + 1f / attackRate;
+        //    }
+
+        //}
+        //if (Input.GetKey("c"))
+        //{
+        //    animator.SetBool("Other", false);
+        //    animator.Play("dance");
+        //}
+        //if (x > 0 || x < 0 || y > 0 || y < 0)
+        //{
+        //    animator.SetBool("Other", true);
+        //}
+        //if (currentHealth <= 0)
+        //{
+        //    animator.SetBool("Other", false);
+        //    animator.Play("Death");
+        //    colider.center=new Vector3(-0.004065989f,1f, -3.600592e-12f);
+        //    colider.height = 0f;
+        //}
     }
 
     public void receiveDamage(float damage)

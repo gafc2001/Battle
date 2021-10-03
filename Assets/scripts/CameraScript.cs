@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public Transform cam;
+    /*public Transform cam;
     void LateUpdate()
     {
         transform.LookAt(transform.position + cam.forward);
-    }
+    }*/
 }

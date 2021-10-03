@@ -2952,7 +2952,7 @@ PrefabInstance:
     - target: {fileID: 1387226166436686443, guid: 92e128b7cc0e0c949a494ce071988c68,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.02
+      value: 2.68
       objectReference: {fileID: 0}
     - target: {fileID: 1387226166436686443, guid: 92e128b7cc0e0c949a494ce071988c68,
         type: 3}
@@ -7236,9 +7236,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0

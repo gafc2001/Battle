@@ -12,81 +12,49 @@ public class Player : MonoBehaviour
     public int maxHealth;
     private int currentHealth;
     //Combat properties
-    public float damage;
-    public float attachRate;
-    private float nextAttack;
+    public int damage;
+    public float attackRate;
+    protected float nextAttack;
     public Transform attackPoint;
     public float attackRange = 5f;
-    public LayerMask enemyLayers;
+    public LayerMask typeOfUnit;
     public CapsuleCollider capsule;
 
     //Movement
     public Animator animator;
     public int speed;
     public int rotationSpeed;
-    private float x, y;
+    protected float x, y;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(currentHealth);
     }
+    
 
-    // Update is called once per frame
-    void Update()
+    protected void AttackWithRate()
     {
-        MovePlayer();
-        Attack();   
-        Joke();
-
-        Die();
-    }
-
-    private void Attack()
-    {
+        
         if (Time.time >= nextAttack)
         {
-
-            if (Input.GetKeyDown("x"))
+            
+            Collider[] enemies = Physics.OverlapSphere(attackPoint.position, attackRange, typeOfUnit);
+            
+            foreach (Collider enemy in enemies)
             {
-                Collider[] enemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
-                foreach (Collider enemy in enemies)
-                {
-                    enemy.GetComponent<IAEnemiga>().receiveDamage(damage);
-                }
+                Debug.Log(enemy.name);
+                enemy.GetComponent<Player>().receiveDamage(damage);
             }
-        }
-        
-    }
-    private void Joke()
-    {
-        if (Input.GetKey("c"))
-        {
-            animator.SetBool("Other", false);
-            animator.Play("dance");
+            nextAttack = Time.time + 1f / attackRate;
         }
     }
-    void OnDrawGizmosSelected()
+    public void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-    private void MovePlayer()
-    {
-        x = Input.GetAxis("Horizontal");
-        y = Input.GetAxis("Vertical");
-        transform.Rotate(0, x * Time.deltaTime * rotationSpeed, 0);
-
-        transform.Translate(0, 0, y * Time.deltaTime * speed);
-
-        animator.SetFloat("VelX", x);
-        animator.SetFloat("VelY", y);
-        if (x > 0 || x < 0 || y > 0 || y < 0)
-        {
-            animator.SetBool("Other", true);
-        }
-    }
-    private void Die()
+    protected void Die()
     {
         if (currentHealth <= 0)
         {
@@ -95,5 +63,10 @@ public class Player : MonoBehaviour
             capsule.center = new Vector3(-0.004065989f, 1f, -3.600592e-12f);
             capsule.height = 0f;
         }
+    }
+    public void receiveDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 }

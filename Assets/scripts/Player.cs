@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     //Health
     public HealthBar healthBar;
     public int maxHealth;
-    private int currentHealth;
+    protected int currentHealth;
     //Combat properties
     public int damage;
     public float attackRate;
@@ -54,11 +54,11 @@ public class Player : MonoBehaviour
     {
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-    protected void Die()
+    protected void Die(string nameAnimation)
     {
         if (currentHealth <= 0)
         {
-            animator.SetBool("Other", false);
+            animator.SetBool(nameAnimation, false);
             animator.Play("Death");
             capsule.center = new Vector3(-0.004065989f, 1f, -3.600592e-12f);
             capsule.height = 0f;

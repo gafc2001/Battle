@@ -21,7 +21,7 @@ public class heromove : Player
         
         Dance();
 
-        Die();
+        Die(null);
     }
     
     private void MovePlayer()

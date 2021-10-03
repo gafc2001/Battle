@@ -8,7 +8,6 @@ public class IAEnemiga : Player
     // Start is called before the first frame update
     public int rutina;
     public float cronometro;
-    public Animator ani;
     public Quaternion angulo;
     public float grado;
     public GameObject target;
@@ -18,20 +17,21 @@ public class IAEnemiga : Player
     // Update is called once per frame
     void Start()
     {
-        ani = GetComponent<Animator>();
+        base.Start();
         target = GameObject.Find("hero");
     }
     void Update()
     {
+
         Comportamiento_Enemigo();
-        Die();
+        //Die("death");
     }
 
     public void Comportamiento_Enemigo()
     {
         if (Vector3.Distance(transform.position, target.transform.position) > 50)
         {
-            ani.SetBool("run", false);
+            animator.SetBool("run", false);
             cronometro += 1 * Time.deltaTime;
             if (cronometro >= 4)
             {
@@ -41,7 +41,7 @@ public class IAEnemiga : Player
             switch (rutina)
             {
                 case 0:
-                    ani.SetBool("walk", false);
+                    animator.SetBool("walk", false);
                     break;
 
                 case 1:
@@ -52,7 +52,7 @@ public class IAEnemiga : Player
                 case 2:
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, angulo, 0.5f);
                     transform.Translate(Vector3.forward * 2 * Time.deltaTime);
-                    ani.SetBool("walk", true);
+                    animator.SetBool("walk", true);
                     break;
             }
         }
@@ -66,15 +66,15 @@ public class IAEnemiga : Player
                 lookPost.y = 0;
                 var rotation = Quaternion.LookRotation(lookPost);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 5);
-                ani.SetBool("walk", false);
-                ani.SetBool("run", true);
+                animator.SetBool("walk", false);
+                animator.SetBool("run", true);
                 transform.Translate(Vector3.forward * 40 * Time.deltaTime);
             }
             else
             {
-                ani.SetBool("walk", false);
-                ani.SetBool("run", false);
-                ani.SetBool("attack", true);
+                animator.SetBool("walk", false);
+                animator.SetBool("run", false);
+                animator.SetBool("attack", true);
                 atacando = true;
                 AttackWithRate();
             }
@@ -84,8 +84,8 @@ public class IAEnemiga : Player
 
     public void Final_Ani()
     {
-        ani.SetBool("attack", false);
-
+        animator.SetBool("attack", false);
+        
         atacando = false;
     }
     

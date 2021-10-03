@@ -21,7 +21,7 @@ public class heromove : MonoBehaviour
 
 
     public GameObject target;
-    public GameObject target2;
+    /*public GameObject target2;*/
 
     public float attackRate = 2f;
     float nextAttack = 0f;

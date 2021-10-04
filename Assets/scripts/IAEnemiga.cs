@@ -29,6 +29,7 @@ public class IAEnemiga : Player
 
     public void Comportamiento_Enemigo()
     {
+        Debug.Log("Vector:"+Vector3.Distance(transform.position, target.transform.position));
         if (Vector3.Distance(transform.position, target.transform.position) > 100)
         {
             animator.SetBool("run", false);
@@ -39,11 +40,11 @@ public class IAEnemiga : Player
                     animator.SetBool("walk", false);
                     break;
 
-                case 1:
-                    grado = Random.Range(0, 360);
-                    angulo = Quaternion.Euler(0, grado, 0);
-                    rutina++;
-                    break;
+                //case 1:
+                //    grado = Random.Range(0, 360);
+                //    angulo = Quaternion.Euler(0, grado, 0);
+                //    rutina++;
+                //    break;
                 case 2:
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, angulo, 0.5f);
                     transform.Translate(Vector3.forward * 2 * Time.deltaTime);
@@ -53,7 +54,7 @@ public class IAEnemiga : Player
         }
         else
         {
-            if (Vector3.Distance(transform.position, target.transform.position) > 25 && !atacando)
+            if (Vector3.Distance(transform.position, target.transform.position) > 100 && !atacando)
             {
 
 
@@ -84,14 +85,14 @@ public class IAEnemiga : Player
     }
     private void OnParticleCollision(GameObject other)
     {
-        if (other != null){
-            if (other.GetComponent<Player>() != null) { 
-                Player player = other.GetComponent<Player>();
-                Debug.Log(player.name);
-                player.receiveDamage(damage);
-            }
+        //if (other != null){
+        //    if (other.GetComponent<Player>() != null) { 
+        //        Player player = other.GetComponent<Player>();
+        //        Debug.Log(player.name);
+        //        player.receiveDamage(damage);
+        //    }
 
-        }
+        //}
 
     }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
     

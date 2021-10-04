@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
             
             foreach (Collider enemy in enemies)
             {
-                Debug.Log(enemy.name);
+                Debug.Log("Attack : "+enemy.name);
                 enemy.GetComponent<Player>().receiveDamage(damage);
             }
             nextAttack = Time.time + 1f / attackRate;

@@ -33,11 +33,6 @@ public class IAEnemiga : Player
         {
             animator.SetBool("run", false);
             cronometro += 1 * Time.deltaTime;
-            if (cronometro >= 4)
-            {
-                rutina = Random.Range(0, 2);
-                cronometro = 0;
-            }
             switch (rutina)
             {
                 case 0:

@@ -5,8 +5,7 @@ using UnityEngine;
 public class heromove : Player
 {
 
-
-
+    
     void Start()
     {
         base.Start();
@@ -22,6 +21,7 @@ public class heromove : Player
         Dance();
 
         Die(null);
+        
     }
     
     private void MovePlayer()
@@ -43,6 +43,7 @@ public class heromove : Player
     {
         if (Input.GetKeyDown("x"))
         {
+            
             AttackWithRate();
             animator.SetBool("Other", false);
             animator.Play("golpear");

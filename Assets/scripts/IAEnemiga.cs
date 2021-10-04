@@ -12,8 +12,7 @@ public class IAEnemiga : Player
     float grado;
     public GameObject target;
     bool atacando;
-    bool isAttacking;
-    
+
     // Update is called once per frame
     void Start()
     {
@@ -68,18 +67,19 @@ public class IAEnemiga : Player
             }
             else
             {
+
                 if (Time.time >= nextAttack)
                 {
                     animator.SetBool("walk", false);
                     animator.SetBool("run", false);
                     animator.SetBool("attack", true);
                     atacando = true;
-                    //Debug.Log("tima" + Time.time);
-                    Debug.Log("Condicion" + (Time.time >= nextAttack));
-                
-                
-                    //AttackWithRate();
-                    nextAttack = Time.time + 1f / attackRate;
+                    if (Input.GetKeyDown("x"))
+                    {
+                        AttackWithRate();
+                        this.GetComponent<IAEnemiga>().receiveDamage(20);
+                    }
+                    
                 }
             }
 
@@ -99,5 +99,12 @@ public class IAEnemiga : Player
         //heromove.LevelUp();
     }
 
-
+    public bool getBool()
+    {
+        return this.atacando;
+    }
+    public void setBool(bool atacando)
+    {
+        this.atacando = atacando;
+    }
 }

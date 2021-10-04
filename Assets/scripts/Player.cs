@@ -43,8 +43,6 @@ public class Player : MonoBehaviour
             foreach (Collider collider in colliders)
             {
                 Player player = collider.GetComponent<Player>();
-                Debug.Log("Attack : "+ player.name);
-                player.receiveDamage(damage, player.name);
             }
             
     }
@@ -63,7 +61,7 @@ public class Player : MonoBehaviour
             this.enabled = false;
         }
     }
-    public void receiveDamage(int damage,string perso)
+    public void receiveDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);

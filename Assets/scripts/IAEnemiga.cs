@@ -6,12 +6,12 @@ using UnityEngine;
 public class IAEnemiga : Player
 {
     // Start is called before the first frame update
-    public int rutina;
-    public float cronometro;
-    public Quaternion angulo;
-    public float grado;
+    int rutina;
+    float cronometro;
+    Quaternion angulo;
+    float grado;
     public GameObject target;
-    public bool atacando;
+    bool atacando;
 
     
     // Update is called once per frame

@@ -6,12 +6,12 @@ using UnityEngine;
 public class IAEnemiga : Player
 {
     // Start is called before the first frame update
-    public int rutina;
-    public float cronometro;
-    public Quaternion angulo;
-    public float grado;
+    int rutina;
+    float cronometro;
+    Quaternion angulo;
+    float grado;
     public GameObject target;
-    public bool atacando;
+    bool atacando;
 
     
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class IAEnemiga : Player
     {
 
         Comportamiento_Enemigo();
-        //Die("death");
+        Die("death");
     }
 
     public void Comportamiento_Enemigo()
@@ -85,15 +85,16 @@ public class IAEnemiga : Player
     public void Final_Ani()
     {
         animator.SetBool("attack", false);
-        
         atacando = false;
     }
     private void OnParticleCollision(GameObject other)
     {
         if (other != null){
-            Player player = other.GetComponent<Player>();
-            Debug.Log(player.name);
-            player.receiveDamage(damage);
+            if (other.GetComponent<Player>() != null) { 
+                Player player = other.GetComponent<Player>();
+                Debug.Log(player.name);
+                player.receiveDamage(damage);
+            }
 
         }
 

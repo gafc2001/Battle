@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
             animator.Play("Death");
             capsule.center = new Vector3(-0.004065989f, 1f, -3.600592e-12f);
             capsule.height = 0f;
+            this.enabled = false;
         }
     }
     public void receiveDamage(int damage)

@@ -17,10 +17,11 @@ public class ParticleCollison : MonoBehaviour
     }
     private void OnParticleCollision(GameObject collider)
     {
-        heromove hero= collider.GetComponent<heromove>();
+        heromove hero = collider.GetComponent<heromove>();
         if (hero != null)
         {
-            hero.receiveDamage(3);
+            Debug.Log(hero.name);
+            hero.receiveDamage(20);
         }
     }
 }

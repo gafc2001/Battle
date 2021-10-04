@@ -12,7 +12,7 @@ public class IAEnemiga : Player
     float grado;
     public GameObject target;
     bool atacando;
-
+    bool isAttacking;
     
     // Update is called once per frame
     void Start()
@@ -24,13 +24,13 @@ public class IAEnemiga : Player
     {
 
         Comportamiento_Enemigo();
-        DieAndReset();
+        Die("death");
     }
 
     public void Comportamiento_Enemigo()
     {
         
-        if (Vector3.Distance(transform.position, target.transform.position) > 100)
+        if (Vector3.Distance(transform.position, target.transform.position) > 200)
         {
             animator.SetBool("run", false);
             cronometro += 1 * Time.deltaTime;
@@ -54,7 +54,7 @@ public class IAEnemiga : Player
         }
         else
         {
-            if (Vector3.Distance(transform.position, target.transform.position) > 100 && !atacando)
+            if (Vector3.Distance(transform.position, target.transform.position) > 50 && !atacando)
             {
 
 
@@ -68,11 +68,19 @@ public class IAEnemiga : Player
             }
             else
             {
-                animator.SetBool("walk", false);
-                animator.SetBool("run", false);
-                animator.SetBool("attack", true);
-                atacando = true;
-                AttackWithRate();
+                if (Time.time >= nextAttack)
+                {
+                    animator.SetBool("walk", false);
+                    animator.SetBool("run", false);
+                    animator.SetBool("attack", true);
+                    atacando = true;
+                    //Debug.Log("tima" + Time.time);
+                    Debug.Log("Condicion" + (Time.time >= nextAttack));
+                
+                
+                    //AttackWithRate();
+                    nextAttack = Time.time + 1f / attackRate;
+                }
             }
 
         }
@@ -83,26 +91,12 @@ public class IAEnemiga : Player
         animator.SetBool("attack", false);
         atacando = false;
     }
-    private void DiedAndResetHeroHealth()
-    {
-    }
-    private void OnParticleCollision(GameObject other)
-    {
-        //if (other != null){
-        //    if (other.GetComponent<Player>() != null) { 
-        //        Player player = other.GetComponent<Player>();
-        //        Debug.Log(player.name);
-        //        player.receiveDamage(damage);
-        //    }
-
-        //}
-
-    }
+    
     private void DieAndReset()
     {
-        Die("death");
+        
         heromove heromove = target.GetComponent<heromove>();
-        heromove.LevelUp();
+        //heromove.LevelUp();
     }
 
 

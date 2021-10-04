@@ -5128,10 +5128,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 2117682151}
   maxHealth: 200
-  damage: 10
-  attackRate: 2
+  damage: 30
+  attackRate: 30
   attackPoint: {fileID: 1129237473}
-  attackRange: 100
+  attackRange: 60
   typeOfUnit:
     serializedVersion: 2
     m_Bits: 1024
@@ -6270,7 +6270,7 @@ MonoBehaviour:
   healthBar: {fileID: 2026781970}
   maxHealth: 150
   damage: 50
-  attackRate: 2
+  attackRate: 4
   attackPoint: {fileID: 878093797}
   attackRange: 50
   typeOfUnit:

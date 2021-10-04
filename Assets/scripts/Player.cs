@@ -34,21 +34,19 @@ public class Player : MonoBehaviour
     }
     
 
-    protected void AttackWithRate()
+    public void AttackWithRate()
     {
         
-        if (Time.time >= nextAttack)
-        {
+        
+            Collider[] colliders = Physics.OverlapSphere(attackPoint.position, attackRange, typeOfUnit);
             
-            Collider[] enemies = Physics.OverlapSphere(attackPoint.position, attackRange, typeOfUnit);
-            
-            foreach (Collider enemy in enemies)
+            foreach (Collider collider in colliders)
             {
-                Debug.Log("Attack : "+enemy.name);
-                enemy.GetComponent<Player>().receiveDamage(damage);
+                Player player = collider.GetComponent<Player>();
+                Debug.Log("Attack : "+ player.name);
+                player.receiveDamage(damage, player.name);
             }
-            nextAttack = Time.time + 1f / attackRate;
-        }
+            
     }
     public void OnDrawGizmosSelected()
     {
@@ -65,7 +63,7 @@ public class Player : MonoBehaviour
             this.enabled = false;
         }
     }
-    public void receiveDamage(int damage)
+    public void receiveDamage(int damage,string perso)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);

@@ -29,7 +29,7 @@ public class IAEnemiga : Player
 
     public void Comportamiento_Enemigo()
     {
-        if (Vector3.Distance(transform.position, target.transform.position) > 50)
+        if (Vector3.Distance(transform.position, target.transform.position) > 100)
         {
             animator.SetBool("run", false);
             cronometro += 1 * Time.deltaTime;
@@ -58,7 +58,7 @@ public class IAEnemiga : Player
         }
         else
         {
-            if (Vector3.Distance(transform.position, target.transform.position) > 10 && !atacando)
+            if (Vector3.Distance(transform.position, target.transform.position) > 25 && !atacando)
             {
 
 

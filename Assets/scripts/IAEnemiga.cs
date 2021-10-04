@@ -24,12 +24,12 @@ public class IAEnemiga : Player
     {
 
         Comportamiento_Enemigo();
-        Die("death");
+        DieAndReset();
     }
 
     public void Comportamiento_Enemigo()
     {
-        Debug.Log("Vector:"+Vector3.Distance(transform.position, target.transform.position));
+        
         if (Vector3.Distance(transform.position, target.transform.position) > 100)
         {
             animator.SetBool("run", false);
@@ -83,6 +83,9 @@ public class IAEnemiga : Player
         animator.SetBool("attack", false);
         atacando = false;
     }
+    private void DiedAndResetHeroHealth()
+    {
+    }
     private void OnParticleCollision(GameObject other)
     {
         //if (other != null){
@@ -94,7 +97,13 @@ public class IAEnemiga : Player
 
         //}
 
-    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-    
+    }
+    private void DieAndReset()
+    {
+        Die("death");
+        heromove heromove = target.GetComponent<heromove>();
+        heromove.LevelUp();
+    }
+
 
 }

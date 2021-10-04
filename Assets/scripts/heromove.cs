@@ -67,5 +67,11 @@ public class heromove : Player
             animator.Play("dance");
         }
     }
+    public void LevelUp()
+    {
+        this.maxHealth += 100;
+        this.currentHealth = maxHealth;
+        this.damage += 50;
+    }
 }
 

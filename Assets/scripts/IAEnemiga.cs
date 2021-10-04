@@ -24,7 +24,7 @@ public class IAEnemiga : Player
     {
 
         Comportamiento_Enemigo();
-        //Die("death");
+        Die("death");
     }
 
     public void Comportamiento_Enemigo()
@@ -85,15 +85,16 @@ public class IAEnemiga : Player
     public void Final_Ani()
     {
         animator.SetBool("attack", false);
-        
         atacando = false;
     }
     private void OnParticleCollision(GameObject other)
     {
         if (other != null){
-            Player player = other.GetComponent<Player>();
-            Debug.Log(player.name);
-            player.receiveDamage(damage);
+            if (other.GetComponent<Player>() != null) { 
+                Player player = other.GetComponent<Player>();
+                Debug.Log(player.name);
+                player.receiveDamage(damage);
+            }
 
         }
 
